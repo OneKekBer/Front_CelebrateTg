@@ -15,6 +15,15 @@ const Home = () => {
 	const status = useSelector(state => state.auth.status)
 	const [value, onChange] = useState(new Date())
 	const [isCalendarOn, setIsCalendarOn] = useState(false)
+
+	const handleNewEventBtn = () => {
+		setIsCalendarOn(true)
+	}
+	const handleCloseCalendar = () => {
+		setIsCalendarOn(false)
+
+	}
+
 	return (
 		<div>
 			{status === 'guest' || status === 'wait' ? (
@@ -26,7 +35,8 @@ const Home = () => {
 				</div>
 			) : (
 				<div className='bg-slate-200 relative h-screen flex justify-center items-center'>
-					{isCalendarOn && <div className='fixed top-1/2 left-1/2 transform translate-x-1/2 -translate-y-1/2 '>
+					{isCalendarOn && <div className='fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 '>
+						<div onClick={handleCloseCalendar}>close</div>
 						<Calendar onChange={onChange} value={value} />
 					</div>}
 
@@ -39,7 +49,7 @@ const Home = () => {
 						<h1>Hello!!</h1>
 
 						<div className=' w-full	 h-[300px] bg-slate-200' ></div>
-						<div className={s.btn}> Новое Событие</div>
+						<div onClick={handleNewEventBtn} className={s.btn}> Новое Событие</div>
 					</div>
 
 
